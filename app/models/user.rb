@@ -8,4 +8,10 @@ class User < ApplicationRecord
   has_many :course, through: :users_course, source: :course
   has_many :users_lesson
   has_many :lesson, through: :users_lesson
+  enum rol: %i[admin teacher user]
+  before_create :default_user
+  def default_user
+    self.rol = :user if rol.nil?
+  end
+
 end
