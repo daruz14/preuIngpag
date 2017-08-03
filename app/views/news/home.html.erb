@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Esta será el home</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aqui iran las noticias</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+      <tr>
+        <td>Titulo: <%= news.title %></td>
+      </tr>
+      <tr>
+        <td><%= news.body %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
