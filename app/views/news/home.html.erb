@@ -1,26 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Esta será el home</h1>
+<!-- Carousel
+   ================================================== -->
+   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+     <!-- Indicators -->
+     <ol class="carousel-indicators">
+       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+     </ol>
+     <div class="carousel-inner" role="listbox">
+       <div class="item active">
+         <%=image_tag("fondo_preu.jpg",style: 'width:100%;' ,alt: "First slide", class: "first-slide")%>
+       </div>
+     </div>
+   </div><!-- /.carousel -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Aqui iran las noticias</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @news.each do |news| %>
-      <tr>
-        <td>Titulo: <%= news.title %></td>
-      </tr>
-      <tr>
-        <td><%= news.body %></td>
-      </tr>
-
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="row">
+  <div class="row dashboard">
+    <h1>Nuevas noticias</h1>
+  </div>
+  <%if @news.size == 0%>
+    <div class="container-fluid well container-md-6 container-news ">
+      <h2 class="news-title"> No hay noticias :(</h2>
+      <div class="news-body">El negro ql aun no pone noticias 77</div>
+    </div>
+  <%end%>
+  <% @news.each do |n|%>
+    <div class="container-fluid well container-md-6 container-news ">
+      <h2 class="news-title"> <%= n.title %></h2>
+      <div class="news-body"><%= n.body %></div>
+    </div>
+  <% end %>
+</div>

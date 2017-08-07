@@ -1,4 +1,6 @@
-<%= form_for(course) do |f| %>
+<%= bootstrap_form_for(course,
+                         layout: :horizontal, label_col: "col-md-2", control_col: "col-md-9") do |f| %>
+
   <% if course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
