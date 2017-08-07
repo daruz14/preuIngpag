@@ -1,0 +1,26 @@
+
+<h1 class="edit-h1">Seleccionar clases</h1>
+
+
+<%= bootstrap_form_for(current_user,
+                         layout: :horizontal, label_col: "col-md-2", control_col: "col-md-9", :url => { :action => "addnewcourse" }, :html => { :method => "put" }) do |f| %>
+  <% if current_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% current_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <%= f.collection_check_boxes :course_ids, Course.all, :id, :name, label:'Course' %><br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', user_path(current_user), :class=>"btn btn-primary edit-back"  %>

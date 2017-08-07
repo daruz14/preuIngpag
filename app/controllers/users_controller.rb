@@ -21,6 +21,26 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def addcourse
+
+  end
+
+  def addnewcourse
+    @user = current_user
+    course_ids =  user_params[:course_ids]
+    course_ids.delete("")
+    course_ids.each do |g|
+      if !@user.course.exists?(g)
+        @course = Course.find(g)
+        @usercourse = UsersCourse.new()
+        @usercourse.course = @course
+        @usercourse.user = @user
+        @usercourse.save
+      end
+    end
+    redirect_to user_path(@user)
+  end
+
   # POST /users
   # POST /users.json
   def create
@@ -69,6 +89,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :rol)
+      params.require(:user).permit(:name, :rol, :course_ids=>[])
     end
 end
